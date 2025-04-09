@@ -1,13 +1,44 @@
-import Game from "./models/game.mjs";
 import {
     saveGameToLocalStorage,
     getAllGamesFromLocalStorage,
     exportAllGamesAsJSON,
     importAllGamesFromJSON
 } from "./storage.mjs"
+import Game from "./models/game.mjs";
 
 let games = [];
 games = getAllGamesFromLocalStorage();
+
+function renderGames() {
+    const gameListEl = document.getElementById("gameList");
+    gameListEl.innerHTML = "";
+
+    games.forEach((game) => {
+        const gameContainer = document.createElement("div");
+        gameContainer.classList.add("game-container");
+
+        const titleEl = document.createElement("h3");
+        titleEl.textContent = `${game.name} (Year: ${game.year})`;
+        gameContainer.appendChild(titleEl);
+
+        const metaEl = document.createElement("paragraph");
+        playCountEl.textContent = `Playcount: ${game.playCount}`;
+        gameContainer.appendChild(playCountEl);
+
+        const ratingWrapper = document.createElement("div");
+        ratingWrapper.textContent = `Rating: `;
+        const ratingInput = document.createElement("input");
+        ratingInput.type = "range";
+        ratingInput.min = "0";
+        ratingInput.max = "10";
+        ratingInput.value = game.rating;
+        ratingWrapper.appendChild(ratingInput);
+        gameContainer.appendChild(ratingWrapper);
+
+        gameListEl.appendChild(gameContainer);
+    });
+}
+
 const fileInput = document.getElementById("importSource");
 fileInput.addEventListener("change", handleFileImport);
 
@@ -25,20 +56,5 @@ function handleFileImport(event) {
     reader.readAsText(file);
 }
 
-console.log("App initialized (Step 4)");
-console.log("Current in-memory games:", games);
-
-const testGame = new Game({
-    name: "Ticket to Ride",
-    year: 2004,
-    players: "2-5",
-    time: "30-40 mins",
-    difficulty: "Light",
-    designer: "Alan R. Moon",
-    artist: "Julien Delval, Cyrille Daujean",
-    publisher: "Days of Wonder",
-    bggLink: "https://boardgamegeek.com/boardgame/9209/ticket-ride",
-    playCount: 423,
-    rating: 6
-});
-console.log("Test Game:", testGame);
+renderGames();
+console.log("App initialized (Step 5)");

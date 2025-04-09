@@ -1,6 +1,6 @@
 # GameRecord
 
-This is a web application to track board games: their ratings, play counts, and other metadata.
+This is a web application to track board games: their ratings, play counts, and other metadata
 
 ## Steps 
 Step 1: Initial commit with basic files
@@ -21,7 +21,7 @@ Objective: Define a Game class that reflects the data structure provided in exam
  - imported the game class into `app.mjs`
 
 Step 3: Implementing LocalStorage Operations
-Objective: Create functions for saving, retrieving, exporting, and importing fames using localStorage.
+Objective: Create functions for saving, retrieving, exporting, and importing fames using localStorage
 
 - Changes:
  Storage Functions:
@@ -33,8 +33,16 @@ Objective: Create functions for saving, retrieving, exporting, and importing fam
 
 Step 4: Adding File Import & In-Memory Game Array
 Objective: 
-  Allow users to import a JSON file (e.g., `example.json`) into localStorage.
+  Allow users to import a JSON file (e.g., `example.json`) into localStorage
 - Changes: 
-  - Updated `index.html` to include an `<input type="file" id="importSource">`.
-  - Added FileReader functionality in `app.mjs` to import JSON data.
-  - Created an in-memory array `games` that is populated from localStorage whenever the app loads.
+  - Updated `index.html` to include an `<input type="file" id="importSource">`
+  - Added FileReader functionality in `app.mjs` to import JSON data
+  - Created an in-memory array `games` that is populated from localStorage whenever the app loads
+
+Step 5: Rendering Game Records in the UI
+Objective: 
+  Dynamically create a visual representation of each game in the UI
+- Changes:  
+  - Updated `index.html` to include a container (`<section id="gameList">`) for displaying games
+  - Wrote the `renderGames()` function in `app.mjs` to loop through the `games` array and create HTML elements for each game
+  - Displayed key details like game title, metadata, playCount, and a range input for rating
