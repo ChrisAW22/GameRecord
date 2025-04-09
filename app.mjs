@@ -1,9 +1,32 @@
+import Game from "./models/game.mjs";
 import {
     saveGameToLocalStorage,
     getAllGamesFromLocalStorage,
     exportAllGamesAsJSON,
     importAllGamesFromJSON
 } from "./storage.mjs"
+
+let games = [];
+games = getAllGamesFromLocalStorage();
+const fileInput = document.getElementById("importSource");
+fileInput.addEventListener("change", handleFileImport);
+
+function handleFileImport(event) {
+    const file = event.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const fileContent = event.target.result;
+        importAllGamesFromJSON(fileContent);
+        games = getAllGamesFromLocalStorage();
+        console.log("Imported Games:", games);
+    };
+    reader.readAsText(file);
+}
+
+console.log("App initialized (Step 4)");
+console.log("Current in-memory games:", games);
 
 const testGame = new Game({
     name: "Ticket to Ride",
