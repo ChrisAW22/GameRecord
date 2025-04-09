@@ -1,6 +1,9 @@
-import Game from "./models/game.mjs";
-
-console.log("App initialized (Step 1).");
+import {
+    saveGameToLocalStorage,
+    getAllGamesFromLocalStorage,
+    exportAllGamesAsJSON,
+    importAllGamesFromJSON
+} from "./storage.mjs"
 
 const testGame = new Game({
     name: "Ticket to Ride",
