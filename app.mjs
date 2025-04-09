@@ -21,7 +21,21 @@ function renderGames() {
         titleEl.textContent = `${game.name} (Year: ${game.year})`;
         gameContainer.appendChild(titleEl);
 
-        const metaEl = document.createElement("paragraph");
+        const metaEl = document.createElement("p");
+        playMetaEl.textContent = `Players: ${game.players} | Time: ${game.time} | Difficulty: ${game.difficulty}`;
+        gameContainer.appendChild(playMetaEl);
+
+        const detailsEl = document.createElement("p");
+        playDetailEl.textContent = `Designer: ${game.designer} | Artist: ${game.artist} | Publisher: ${game.publisher}`
+        gameContainer.appendChild(playDetailEl);
+
+        const linkEl = document.createElement("a");
+        linkEl.href = game.bggLink;
+        linkEl.target = "_blank";
+        linkEl.textContent = "BGG Listing";
+        gameContainer.appendChild(linkEl);
+
+        const playCountEl = document.createElement("p");
         playCountEl.textContent = `Playcount: ${game.playCount}`;
         gameContainer.appendChild(playCountEl);
 
