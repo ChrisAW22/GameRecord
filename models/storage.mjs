@@ -38,4 +38,19 @@ export function importAllGamesFromJSON(jsonString) {
     }
 }
 
+export function removeGameFromLocalStorage(gameObj) {
+    const keysToRemove = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if(key.startsWith("Game-")) {
+            const storedGame = JSON.parse(localStorage.getItem(key));
+            if (storedGame.name === gameObj.name && storedGame.year === gameObj.year) {
+                keysToRemove.push(key);
+            }
+        }
+    }
+    keysToRemove.forEach(k => localStorage.removeItem(k));
+}
+
 console.log("App initialized"); 

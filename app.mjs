@@ -2,7 +2,8 @@ import {
     saveGameToLocalStorage,
     getAllGamesFromLocalStorage,
     exportAllGamesAsJSON,
-    importAllGamesFromJSON
+    importAllGamesFromJSON,
+    removeGameFromLocalStorage
 } from "./storage.mjs"
 import Game from "./models/game.mjs";
 
@@ -22,11 +23,11 @@ function renderGames() {
 
         const metaEl = document.createElement("p");
         playMetaEl.textContent = `Players: ${game.players} | Time: ${game.time} | Difficulty: ${game.difficulty}`;
-        gameContainer.appendChild(playMetaEl);
+        gameContainer.appendChild(metaEl);
 
         const detailsEl = document.createElement("p");
         playDetailEl.textContent = `Designer: ${game.designer} | Artist: ${game.artist} | Publisher: ${game.publisher}`
-        gameContainer.appendChild(playDetailEl);
+        gameContainer.appendChild(detailsEl);
 
         const linkEl = document.createElement("a");
         linkEl.href = game.bggLink;
@@ -46,6 +47,17 @@ function renderGames() {
             saveGameToLocalStorage(game);
         });
         gameContainer.appendChild(incrementBtn);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.addEventListener("click", () => {
+            removeGameFromLocalStorage(game);
+            games.splice(index, 1);
+            renderGames();
+        });
+        gameContainer.appendChild(deleteBtn);
+
+        gameListEl.appendChild(gameContainer);
 
         const ratingWrapper = document.createElement("div");
         ratingWrapper.textContent = `Rating: `;

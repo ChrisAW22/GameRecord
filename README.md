@@ -64,10 +64,17 @@ Objective:
 
 Step 8: Implementing New Game Addition Functionality
 Objective: 
-  Enable the UI from Step 7 so that users can add new games.
+  Enable the UI from Step 7 so that users can add new games
 - Changes: 
   - Added event listeners in `app.mjs` to capture data when the "Add Game" button is clicked
   - Constructed a new `Game` object based on the form inputs
   - Saved the new game to localStorage and pushed it to the in-memory `games` array
   - Called `renderGames()` to update the displayed list
 
+Step 9: Deleting a Game Entry
+Objective:  
+  Allow users to delete a game from the record
+- Changes:  
+  - Added a "Delete" button for each game within the `renderGames()` function
+  - Implemented a `removeGameFromLocalStorage(gameObj)` function in `storage.js` to remove the game entry from localStorage
+  - Updated the in-memory `games` array accordingly and re-rendered the list after deletion
