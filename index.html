@@ -14,9 +14,52 @@
         <input type="file" id="importSource" accept=".json" />
     </section>
 
-    <section id="gameList">
-
+    <section>
+        <h2>Add a New Game</h2>
+        <div>
+            <label for="nameInput">Name:</label>
+            <input type="text" id="nameInput" />
+        </div>
+        <div>
+            <label for="yearInput">Year:</label>
+            <input type="number" id="yearInput" />
+        </div>
+        <div>
+            <label for="playersInput">Players:</label>
+            <input type="text" id="playersInput" />
+        </div>
+        <div>
+            <label for="timeInput">Time:</label>
+            <input type="text" id="timeInput" />
+        </div>
+        <div>
+            <label for="difficultyInput">Difficulty:</label>
+            <input type="text" id="difficultyInput" />
+        </div>
+        <div>
+            <label for="artistInput">Artist:</label>
+            <input type="text" id="artistInput" />
+        </div>
+        <div>
+            <label for="publisherInput">Publisher:</label>
+            <input type="text" id="publisherInput" />
+        </div>
+        <div>
+            <label for="bggLinkInput">BGG Link:</label>
+            <input type="text" id="bggLinkInput" />
+        </div>
+        <div>
+            <label for="playCountInput">Playcount:</label>
+            <input type="number" id="playCountInput" value="0" />
+        </div>
+        <div>
+            <label for="ratingInput">Rating:</label>
+            <input type="number" id="ratingInput" value="0" />
+        </div>
+        <button id="gameList">Add Game</button>
     </section>
+
+    <section id="gameList"></section>
 
     <script type="module" src="app.mjs"></script>
 </body>

@@ -54,3 +54,10 @@ Objective:
   - Added a "+" button to increment the playCount
   - Attached event listeners to the rating slider to update the game’s rating in real time
   - Made sure changes are saved back into localStorage via the storage functions
+
+Step 7: Adding UI for New Game Entry
+Objective: 
+  Create a form in the UI to add a new game.
+- Changes:  
+  - Updated `index.html` by adding input fields (for name, year, players, time, difficulty, designer, artist, publisher, bgg link, playcount, rating,) and a button with `id="addGameBtn"`
+  - This form is used in Step 8 to capture and save the data for a new game
