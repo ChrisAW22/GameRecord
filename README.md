@@ -46,3 +46,11 @@ Objective:
   - Updated `index.html` to include a container (`<section id="gameList">`) for displaying games
   - Wrote the `renderGames()` function in `app.mjs` to loop through the `games` array and create HTML elements for each game
   - Displayed key details like game title, metadata, playCount, and a range input for rating
+
+Step 6: Making PlayCount and Rating Interactive
+Objective:  
+  Allow the UI elements for playCount and rating to update the game data
+- Changes:  
+  - Added a "+" button to increment the playCount
+  - Attached event listeners to the rating slider to update the game’s rating in real time
+  - Made sure changes are saved back into localStorage via the storage functions

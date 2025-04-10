@@ -39,6 +39,15 @@ function renderGames() {
         playCountEl.textContent = `Playcount: ${game.playCount}`;
         gameContainer.appendChild(playCountEl);
 
+        const incrementBtn = document.createElement("button");
+        incrementBtn.textContent = "+";
+        incrementBtn.addEventListener("click", () => {
+            game.playCount++;
+            playCountEl.textContent = `Playcount: ${game.playCount}`;
+            saveGameToLocalStorage(game);
+        });
+        gameContainer.appendChild(incrementBtn);
+
         const ratingWrapper = document.createElement("div");
         ratingWrapper.textContent = `Rating: `;
         const ratingInput = document.createElement("input");
@@ -46,7 +55,19 @@ function renderGames() {
         ratingInput.min = "0";
         ratingInput.max = "10";
         ratingInput.value = game.rating;
+        ratingInput.addEventListener("input", () => {
+            game.rating = parseInt(ratingInput.value);
+            saveGameToLocalStorage(game);
+        });
         ratingWrapper.appendChild(ratingInput);
+
+        const ratingValueDisplay = document.createElement("span");
+        ratingValueDisplay.textContent = ` ${game.rating}`;
+        ratingInput.addEventListener("input", () => {
+            ratingValueDisplay.textContent = ` ${ratingInput.value}`;
+        });
+        ratingWrapper.appendChild(ratingValueDisplay);
+
         gameContainer.appendChild(ratingWrapper);
 
         gameListEl.appendChild(gameContainer);
@@ -71,4 +92,4 @@ function handleFileImport(event) {
 }
 
 renderGames();
-console.log("App initialized (Step 5)");
+console.log("App initialized");
