@@ -61,3 +61,13 @@ Objective:
 - Changes:  
   - Updated `index.html` by adding input fields (for name, year, players, time, difficulty, designer, artist, publisher, bgg link, playcount, rating,) and a button with `id="addGameBtn"`
   - This form is used in Step 8 to capture and save the data for a new game
+
+Step 8: Implementing New Game Addition Functionality
+Objective: 
+  Enable the UI from Step 7 so that users can add new games.
+- Changes: 
+  - Added event listeners in `app.mjs` to capture data when the "Add Game" button is clicked
+  - Constructed a new `Game` object based on the form inputs
+  - Saved the new game to localStorage and pushed it to the in-memory `games` array
+  - Called `renderGames()` to update the displayed list
+

@@ -38,4 +38,4 @@ export function importAllGamesFromJSON(jsonString) {
     }
 }
 
-console.log("App initialized (Step 3)."); 
+console.log("App initialized"); 

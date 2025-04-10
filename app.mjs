@@ -6,8 +6,7 @@ import {
 } from "./storage.mjs"
 import Game from "./models/game.mjs";
 
-let games = [];
-games = getAllGamesFromLocalStorage();
+let games = getAllGamesFromLocalStorage();
 
 function renderGames() {
     const gameListEl = document.getElementById("gameList");
@@ -90,6 +89,45 @@ function handleFileImport(event) {
     };
     reader.readAsText(file);
 }
+
+const addGameBtn = document.getElementById("addGameBtn");
+addGameBtn.addEventListener("click", () => {
+    const name = document.getElementById("nameInput").value;
+    const year = parseInt(document.getElementById("yearInput").value) || 0;
+    const players = document.getElementById("playersInput").value;
+    const time = document.getElementById("timeInput").value;
+    const difficulty = document.getElementById("difficultyInput").value;
+    const designer = document.getElementById("designerInput").value;
+    const artist = document.getElementById("artistInput").value;
+    const publisher = document.getElementById("publisherInput").value;
+    const bggLink = document.getElementById("bggLinkInput").value;
+    const playCount = parseInt(document.getElementById("playCountInput").value) || 0;
+    const rating = parseInt(document.getElementById("ratingInput").value) || 0;
+
+    const newGame = new Game({
+        name, year, players, time, difficulty,
+        designer, artist, publisher, bggLink,
+        playCount, rating
+    });
+
+    saveGameToLocalStorage(newGame);
+
+    games.push(newGame);
+
+    document.getElementById("nameInput").value = "";
+    document.getElementById("yearInput").value = "";
+    document.getElementById("playersInput").value = "";
+    document.getElementById("timeInput").value = "";
+    document.getElementById("difficultyInput").value = "";
+    document.getElementById("designerInput").value = "";
+    document.getElementById("artistInput").value = "";
+    document.getElementById("publisherInput").value = "";
+    document.getElementById("bggLinkInput").value = "";
+    document.getElementById("playCountInput").value = "";
+    document.getElementById("ratingInput").value = "";
+
+    renderGames();
+});
 
 renderGames();
 console.log("App initialized");
