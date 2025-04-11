@@ -86,3 +86,11 @@ Objective:
   - Added a `<select>` element in `index.html` for sorting criteria
   - Implemented the `sortGames(criteria)` function in `app.mjs` which sorts the `games` array based on the selected criteria
   - Re-rendered the game list after sorting is applied
+
+Step 11: Editing a Game Entry
+Objective:  
+  Add the ability to edit existing game entries
+- Changes:
+  - Added an Edit button for each game in the UI
+  - Implemented simple editing functionality that allows updating a game’s information
+  - Updates are saved back to localStorage and the game list is refreshed to reflect the changes

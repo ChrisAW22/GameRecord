@@ -13,7 +13,7 @@ function renderGames() {
     const gameListEl = document.getElementById("gameList");
     gameListEl.innerHTML = "";
 
-    games.forEach((game) => {
+    games.forEach((game, index) => {
         const gameContainer = document.createElement("div");
         gameContainer.classList.add("game-container");
 
@@ -22,11 +22,11 @@ function renderGames() {
         gameContainer.appendChild(titleEl);
 
         const metaEl = document.createElement("p");
-        playMetaEl.textContent = `Players: ${game.players} | Time: ${game.time} | Difficulty: ${game.difficulty}`;
+        metaEl.textContent = `Players: ${game.players} | Time: ${game.time} | Difficulty: ${game.difficulty}`;
         gameContainer.appendChild(metaEl);
 
         const detailsEl = document.createElement("p");
-        playDetailEl.textContent = `Designer: ${game.designer} | Artist: ${game.artist} | Publisher: ${game.publisher}`
+        detailsEl.textContent = `Designer: ${game.designer} | Artist: ${game.artist} | Publisher: ${game.publisher}`
         gameContainer.appendChild(detailsEl);
 
         const linkEl = document.createElement("a");
@@ -58,6 +58,19 @@ function renderGames() {
         gameContainer.appendChild(deleteBtn);
 
         gameListEl.appendChild(gameContainer);
+        
+
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.addEventListener("click", () => {
+            const newName = prompt("Enter new name:", game.name);
+            if (newName !== null) {
+                game.name = newName;
+                saveGameToLocalStorage(game);
+                renderGames();
+            }
+        });
+        gameContainer.appendChild(editBtn);
 
         const ratingWrapper = document.createElement("div");
         ratingWrapper.textContent = `Rating: `;
@@ -130,8 +143,22 @@ function handleFileImport(event) {
         importAllGamesFromJSON(fileContent);
         games = getAllGamesFromLocalStorage();
         console.log("Imported Games:", games);
+        renderGames();
     };
     reader.readAsText(file);
+}
+
+const exportBtn = document.getElementById("exportBtn");
+if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+        const jsonData = exportAllGamesAsJSON();
+        console.log("Exported JSON:", jsonData);
+        const blob = new Blob([jsonData], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "games.json";
+        link.click();
+    });
 }
 
 const addGameBtn = document.getElementById("addGameBtn");
