@@ -78,3 +78,11 @@ Objective:
   - Added a "Delete" button for each game within the `renderGames()` function
   - Implemented a `removeGameFromLocalStorage(gameObj)` function in `storage.js` to remove the game entry from localStorage
   - Updated the in-memory `games` array accordingly and re-rendered the list after deletion
+
+Step 10: Sorting Game Listings
+Objective: 
+  Enable sorting of the game listing based on players, rating, difficulty, or playCount
+- Changes:  
+  - Added a `<select>` element in `index.html` for sorting criteria
+  - Implemented the `sortGames(criteria)` function in `app.mjs` which sorts the `games` array based on the selected criteria
+  - Re-rendered the game list after sorting is applied

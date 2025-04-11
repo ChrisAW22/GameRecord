@@ -85,6 +85,38 @@ function renderGames() {
     });
 }
 
+const sortSelect = document.getElementById("sortSelect");
+if (sortSelect) {
+    sortSelect.addEventListener("change", () => {
+        const sortBy = sortSelect.value;
+        sortGames(sortBy);
+        renderGames();
+    });
+}
+
+function sortGames(criteria) {
+    switch (criteria) {
+        case "players":
+            games.sort((a, b) => {
+                const aMin = parseInt(a.players) || 0;
+                const bMin = parseInt(b.players) || 0;
+                return aMin - bMin;
+            });
+            break;
+        case "rating":
+            games.sort((a, b) => a.rating - b.rating);
+            break;
+        case "difficulty":
+            games.sort((a, b) => a.difficulty.localeCompare(b.difficulty));
+            break;
+        case "playCount":
+            games.sort((a, b) => a.playCount - b.playCount);
+            break;
+        default:
+            break;    
+    }
+}
+
 const fileInput = document.getElementById("importSource");
 fileInput.addEventListener("change", handleFileImport);
 
